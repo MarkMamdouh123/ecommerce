@@ -8,6 +8,7 @@ class GetAllProductService {
         await Api().get(url: "https://fakestoreapi.com/products");
     List<ProductModel> products;
     products = data.map((e) => ProductModel.fromJson(e)).toList();
+
     return products;
   }
 }

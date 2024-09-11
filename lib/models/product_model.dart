@@ -1,11 +1,11 @@
 class ProductModel {
   final int id;
-  final String title;
-  final double price;
-  final String description;
-  final String category;
-  final String image;
-  final Rating rating;
+  final String? title;
+  final num? price;
+  final String? description;
+  final String? category;
+  final String? image;
+  final Rating? rating;
   ProductModel({
     required this.id,
     required this.rating,
@@ -24,16 +24,14 @@ class ProductModel {
       description: json['description'],
       category: json['category'],
       image: json['image'],
-      rating: Rating.fromJson(
-        json['rating'],
-      ),
+      rating: json['rating'] == null ? null : Rating.fromJson(json['rating']),
     );
   }
 }
 
 class Rating {
-  final double rate;
-  final int count;
+  final num? rate;
+  final int? count;
 
   Rating({required this.rate, required this.count});
   factory Rating.fromJson(json) {

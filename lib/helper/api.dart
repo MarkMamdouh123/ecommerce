@@ -16,7 +16,7 @@ class Api {
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
-      throw Exception("Something Went Wrong ${response.statusCode}");
+      throw Exception("Something get Wrong ${response.statusCode}");
     }
   }
 
@@ -35,27 +35,27 @@ class Api {
       Map<String, dynamic> data = jsonDecode(response.body);
       return data;
     } else {
-      throw Exception("Something Went Wrong ${response.statusCode}");
+      throw Exception("Something post Wrong ${response.statusCode}");
     }
   }
-}
 
-Future<dynamic> put(
-    {required String url,
-    @required dynamic body,
-    @required header,
-    @required String? token}) async {
-  Map<String, String> header = {};
-  header.addAll({' Content-Type': 'application/x-www-form-urlencoded'});
-  if (token != null) {
-    header.addAll({'Authorization': 'Bearer $token'});
-  }
-  http.Response response = await http.post(Uri.parse(url));
-
-  if (response.statusCode == 200) {
-    Map<String, dynamic> data = jsonDecode(response.body);
-    return data;
-  } else {
-    throw Exception("Something Went Wrong ${response.statusCode}");
+  Future<dynamic> put(
+      {required String url,
+      @required dynamic body,
+      @required header,
+      @required String? token}) async {
+    Map<String, String> header = {};
+    header.addAll({' Content-Type': 'application/x-www-form-urlencoded'});
+    if (token != null) {
+      header.addAll({'Authorization': 'Bearer $token'});
+    }
+    http.Response response = await http.put(Uri.parse(url));
+    print(' url is ${url}, body is $body');
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+      return data;
+    } else {
+      throw Exception("Something put Wrong ${response.statusCode}");
+    }
   }
 }
